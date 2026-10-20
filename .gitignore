@@ -18,3 +18,5 @@ next-env.d.ts
 .idea/
 *.tsbuildinfo
 npm-debug.log*
+.vercel
+.env*
