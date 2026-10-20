@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* 7f palette. Same values as the design canvas and the static prototype. */
+@theme {
+  --color-bg: #0a0a0a;
+  --color-grain: #242424;
+  --color-fg: #ffffff;
+  --color-body: #d4d4d4;
+  --color-muted: #a3a3a3;
+  --color-dim: #6b6b6b;
+  --color-hairline: #2e2e2e;
+
+  /* the design switches layout at 720px */
+  --breakpoint-md: 45rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  /* Konami */
+  html.flipped {
+    transform: rotate(180deg);
+  }
+  body {
+    background-color: var(--color-bg);
+    background-image: radial-gradient(var(--color-grain) 1px, transparent 1.2px);
+    background-size: 7px 7px;
+    color: var(--color-fg);
+    -webkit-font-smoothing: antialiased;
+    animation: drift 40s linear infinite;
+  }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* One hover for every outlined button: white slides in under the label, text inverts. */
+  .btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-fg);
+    transform: translateX(-101%);
+    transition: transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:hover,
+  .btn:focus-visible {
+    color: var(--color-bg);
+  }
+  .btn:hover::after,
+  .btn:focus-visible::after {
+    transform: translateX(0);
+  }
+
+  /* Headline lines rise out of a clipped box. Gated on html.ready (set by Konami.tsx on the
+     first frame) so a page that isn't painting never shows a blank hero. */
+  .reveal-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+    margin-bottom: -0.06em;
+  }
+  .reveal-line > span {
+    display: block;
+  }
+  .ready .reveal-line > span {
+    animation: rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .ready .reveal-line:nth-child(2) > span {
+    animation-delay: 80ms;
+  }
+  .ready .reveal-line:nth-child(3) > span {
+    animation-delay: 160ms;
+  }
+  .ready .fade-in {
+    animation: fadeup 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 350ms both;
+  }
+}
+
+@keyframes rise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes drift {
+  to { background-position: 70px 70px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .ready .reveal-line > span,
+  .ready .fade-in {
+    animation: none !important;
+  }
+  html,
+  .btn,
+  .btn::after {
+    transition: none !important;
+  }
+}
