@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /private/tmp/claude-501/-Users-mericot-Projects-personal-site/a614892a-4e4b-440a-a96d-1074c3ea4062/scratchpad/palettes/project && sed -i '' -e '/\\\\.log-row \\\\.read{grid-column:2}/d' -e 's/<title>Samuel – 7f, with the log<\\\\/title>/<title>Samuel – 7f<\\\\/title>/' Grain7f.dc.html Grain7fPhone.dc.html && sed -n '12,30p' Grain7f.dc.html && grep -n -i \"log\" Grain7f.dc.html Grain7fPhone.dc.html)",
+      "Bash(sed -i '' -e 's/min-height: 1300px/min-height: 900px/' -e 's/\"height\":1300}/\"height\":900}/' Grain7f.dc.html)",
+      "Bash(sed -i '' -e 's/min-height: 1600px/min-height: 1200px/' -e 's/\"height\":1600}/\"height\":1200}/' Grain7fPhone.dc.html)",
+      "Bash(grep -o 'min-height: [0-9]*px\\\\|\"\\\\$preview\":{[^}]*}' Grain7f.dc.html Grain7fPhone.dc.html)"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "building": "[WHAT YOU'RE BUILDING THIS WEEK]",
+  "learning": "[WHAT YOU'RE LEARNING]",
+  "stuck": "[THE THING THAT BROKE]",
+  "thisWeek": "[ONE LINE ON WHAT YOU'RE BUILDING OR FIXING RIGHT NOW]",
+  "cadence": "The full story lands in subscribers' inboxes [WEEKDAY].",
+  "latestTitle": "[TITLE OF YOUR LAST ISSUE]",
+  "latestDate": "[DATE]",
+  "latestUrl": "#"
+}

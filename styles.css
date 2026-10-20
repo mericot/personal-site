@@ -1,0 +1,172 @@
+/* Grain palette — tokens shared with the design canvas (7e · Portrait emerging from the grain). */
+:root {
+  --bg: #0a0a0a;
+  --grain: #242424;
+  --fg: #ffffff;
+  --body: #d4d4d4;
+  --muted: #a3a3a3;
+  --dim: #6b6b6b;
+  --hairline: #2e2e2e;
+  --error: #b91c1c;
+
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --t-12: 12px; --t-14: 14px; --t-16: 16px; --t-18: 18px;
+  --t-24: 24px; --t-32: 32px; --t-72: 72px;
+
+  --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px;
+  --s-8: 32px; --s-12: 48px; --s-16: 64px;
+
+  --rule: 2px solid var(--fg);
+  --control-h: 48px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--bg); transition: transform 600ms var(--ease); }
+html.flipped { transform: rotate(180deg); }
+
+body {
+  margin: 0;
+  color: var(--fg);
+  font: var(--t-16)/1.55 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--grain) 1px, transparent 1.2px);
+  background-size: 7px 7px;
+  animation: drift 40s linear infinite;
+}
+
+main { max-width: 960px; margin: 0 auto; padding: var(--s-6) var(--s-4) var(--s-16); display: flex; flex-direction: column; gap: var(--s-12); }
+
+/* text sits directly on the grain; the dots are dim enough (#242424) to never fight the letters */
+.plate { align-self: flex-start; }
+
+h1 { margin: 0; font: 800 clamp(40px, 11vw, var(--t-72))/0.98 var(--font-display); letter-spacing: -0.045em; }
+h1 .dim { color: var(--dim); font-size: 0.72em; }
+h2 { margin: 0 0 var(--s-4); font: 600 var(--t-12)/1.4 var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+h3 { margin: 0; font: 700 var(--t-24)/1.2 var(--font-display); letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+.fine { font-size: var(--t-14); color: var(--muted); }
+.lead { font-size: var(--t-18); color: var(--body); max-width: 480px; }
+
+/* ticker */
+.ticker { border-bottom: var(--rule); overflow: hidden; }
+.ticker-track { display: flex; gap: 40px; width: max-content; padding: 10px var(--s-6); text-decoration: none; font: 500 13px/1.4 var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; animation: marquee 30s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-item { color: var(--muted); }
+.ticker-item.is-live { color: var(--fg); display: inline-flex; align-items: center; gap: 10px; }
+.ticker-item.is-live i { width: 8px; height: 8px; border-radius: 50%; background: var(--fg); }
+.ticker-item[hidden] { display: none; }
+
+/* header */
+.top { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; }
+.wordmark { font: 700 var(--t-24)/1 var(--font-display); letter-spacing: -0.02em; }
+.slot { display: none; width: 48px; height: 48px; border: var(--rule); flex: none; overflow: hidden; }
+/* Zoom anchored at the hairline (origin 20%): the top of the head never moves into the edge,
+   ~18% headroom stays above the hair, and the face fills the frame downward. */
+.slot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; transform: scale(1.25); transform-origin: 50% 20%; }
+
+/* hero */
+.hero { display: flex; flex-wrap: wrap; gap: var(--s-8) var(--s-16); align-items: flex-start; justify-content: space-between; }
+.hero-copy { flex: 1 1 420px; display: flex; flex-direction: column; gap: 28px; }
+.signup { display: flex; flex-direction: column; gap: var(--s-2); max-width: 560px; }
+.embed { width: 100%; height: 90px; border: 0; background: transparent; display: block; }
+.latest { font-size: var(--t-14); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+
+/* lighten: the photo's black background drops out, so the grain shows through it like everywhere else */
+/* Photo A · Frame: a crisp 4:5 crop in full color. No mask, no blend, no filter.
+   Hair ~40 px from the top, eyes at ~41%, neckline at the bottom edge. */
+.portrait { flex: 0 0 320px; height: 400px; align-self: flex-start; overflow: hidden; }
+.portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; transform: scale(1.15); transform-origin: 50% 35%; }
+
+/* intro motion: lines rise out of a clipped box, the rest fades up after.
+   Only runs under html.ready, which main.js adds on the first animation frame, so a page that
+   isn't painting (no JS, background tab, prerender) shows everything immediately. */
+.line { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
+.line > span { display: block; }
+.ready .line > span { animation: rise 700ms var(--ease) both; }
+.ready .line:nth-child(2) > span { animation-delay: 80ms; }
+.ready .line:nth-child(3) > span { animation-delay: 160ms; }
+.ready .later { animation: fadeup 600ms var(--ease) both; }
+.ready .d1 { animation-delay: 350ms; } .ready .d2 { animation-delay: 500ms; } .ready .d3 { animation-delay: 650ms; }
+
+/* controls: one fill-sweep on every button and pill */
+.btn { position: relative; overflow: hidden; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  height: var(--control-h); padding: 0 var(--s-6); border: var(--rule); border-radius: 0; background: transparent; color: var(--fg);
+  font: 600 var(--t-14) var(--font-body); text-decoration: none; cursor: pointer; transition: color 350ms var(--ease); }
+.btn::after { content: ""; position: absolute; inset: 0; background: var(--fg); transform: translateX(-101%); transition: transform 350ms var(--ease); z-index: -1; }
+.btn:hover::after, .btn:focus-visible::after { transform: translateX(0); }
+.btn:hover, .btn:focus-visible { color: var(--bg); }
+.btn-ghost { height: 40px; padding: 0 var(--s-4); }
+.btn-solid { background: var(--fg); color: var(--bg); font-weight: 700; }
+.btn-solid::after { background: var(--bg); }
+.btn-solid:hover, .btn-solid:focus-visible { color: var(--fg); }
+.pills { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.pill { height: 44px; padding: 0 var(--s-4); }
+.icons { display: flex; gap: var(--s-2); }
+.icon { width: 44px; height: 44px; padding: 0; }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* this week */
+.card { border: var(--rule); padding: var(--s-6); max-width: 560px; display: flex; flex-direction: column; gap: var(--s-2); }
+.card h2 { margin: 0; }
+.week-line { font: 700 var(--t-24)/1.2 var(--font-display); letter-spacing: -0.02em; }
+.caret { display: inline-block; width: .5em; height: .9em; background: var(--fg); vertical-align: -.1em; margin-left: .12em; animation: blink 1s steps(1) infinite; }
+
+/* building */
+.building { display: flex; flex-direction: column; }
+.building h2 { margin-bottom: var(--s-2); }
+.entry { padding: var(--s-6) 0; border-top: 1px solid var(--hairline); display: flex; flex-direction: column; gap: var(--s-2); }
+.entry:last-child { border-bottom: 1px solid var(--hairline); }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; }
+.row a { font-size: var(--t-14); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.entry p { color: var(--muted); }
+
+/* the one solid white object on the page */
+.inverted { background: var(--fg); color: var(--bg); padding: var(--s-8); display: flex; flex-direction: column; gap: var(--s-4); }
+.inverted h2 { color: var(--dim); }
+.inverted .talk-title { margin: 0; font: 800 var(--t-32)/1.05 var(--font-display); letter-spacing: -0.03em; color: var(--bg); text-transform: none; }
+.inverted p { color: #525252; max-width: 460px; }
+.inverted .btn { background: var(--fg); color: var(--bg); border-color: var(--bg); }
+.inverted .btn::after { background: var(--bg); }
+.inverted .btn:hover, .inverted .btn:focus-visible { color: var(--fg); }
+.inverted .btn-solid { background: var(--bg); color: var(--fg); }
+.inverted .btn-solid::after { background: var(--fg); }
+.inverted .btn-solid:hover, .inverted .btn-solid:focus-visible { color: var(--bg); }
+
+/* footer */
+footer { display: flex; flex-direction: column; gap: var(--s-4); padding-top: var(--s-8); border-top: 1px solid var(--hairline); }
+.foot-title { font: 700 var(--t-24)/1.2 var(--font-display); letter-spacing: -0.02em; }
+footer .embed { max-width: 560px; }
+.foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+
+/* konami toast */
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 14px 18px; display: flex; align-items: center; gap: var(--s-3); font-weight: 600; z-index: 10; max-width: calc(100% - 32px); }
+.toast[hidden] { display: none; }
+.toast-keys { font: 500 13px var(--font-mono); letter-spacing: 0.1em; }
+
+@keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+@keyframes fadeup { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes drift { to { background-position: 70px 70px; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 720px) {
+  .portrait { display: none; }
+  .slot { display: inline-block; }
+  .ticker-track { padding: 10px var(--s-4); }
+  .inverted { padding: var(--s-6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .ticker-track, .line > span, .later, .caret { animation: none !important; }
+  .later { opacity: 1; }
+  html, .btn, .btn::after { transition: none; }
+}
