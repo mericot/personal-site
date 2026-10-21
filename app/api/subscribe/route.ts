@@ -1,10 +1,10 @@
 import { checkBotId } from "botid/server";
 import { EMAIL_RE } from "@/lib/subscribe";
 
-// POST /api/subscribe { email } adds the address to the Kit (ConvertKit) form, which handles
-// double opt-in and the welcome email. Needs KIT_API_KEY and KIT_FORM_ID in Vercel. Until they're
+// POST /api/subscribe { email } adds the address to the Kit (ConvertKit) form, which sends
+// any welcome email. Needs KIT_API_KEY and KIT_FORM_ID in Vercel. Until they're
 // set it answers 503 not_configured and the page falls back to an email.
-// Every signup triggers a confirmation email, so bots are kept away from Kit: a honeypot field that only
+// Every signup goes straight onto the list, so bots are kept away from Kit: a honeypot field that only
 // bots fill in, plus BotID (see instrumentation-client.ts).
 // BotID is log-only for now: in production it flagged every real visitor as a bot (October 2026). Its
 // verdict is logged, without the address or IP, until we know why; then set BLOCK_BOTS back to true.
@@ -47,8 +47,8 @@ export async function POST(request: Request) {
   }
 
   // Kit only adds existing subscribers to a form (404 otherwise), so create them first. New ones start
-  // inactive and become active when they click the form's confirmation email; the create is an upsert
-  // that leaves an existing subscriber's state alone.
+  // inactive; with the form's double opt-in off (Oct 2026), adding them to the form makes them active
+  // right away. The create is an upsert that leaves an existing subscriber's state alone.
   const headers = { "X-Kit-Api-Key": key, "Content-Type": "application/json" };
   const created = await fetch("https://api.kit.com/v4/subscribers", {
     method: "POST",
