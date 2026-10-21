@@ -24,7 +24,7 @@ Push to `main` and Vercel redeploys in about a minute.
 
 ## Newsletter
 
-The signup is a `$ subscribe` prompt (and `subscribe you@email.com` in the terminal). Both post to `app/api/subscribe`, which adds the address to Beehiiv. Set `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID` in Vercel (Beehiiv → Settings → API). Until they're set, submitting opens the visitor's mail app with their address filled in, so no signup is lost. The welcome email text is in `docs/WELCOME_EMAIL.md`.
+The signup is a `$ subscribe` prompt (and `subscribe you@email.com` in the terminal). Both post to `app/api/subscribe`, which adds the address to a Kit (ConvertKit) form. Set `KIT_API_KEY` (Kit → Settings → Developer → API Keys, a v4 key) and `KIT_FORM_ID` (the number in the form's URL) in Vercel. Until they're set, submitting opens the visitor's mail app with their address filled in, so no signup is lost. The welcome email text is in `docs/WELCOME_EMAIL.md`.
 
 ## Easter eggs
 

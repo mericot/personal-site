@@ -37,7 +37,11 @@ export function DinoGame() {
     const cx = cv?.getContext("2d");
     if (!cv || !cx) return;
 
-    let best = Number(localStorage.getItem("dino-hi") || 0);
+    // localStorage throws when the browser blocks site data; the game still works, the score just isn't kept.
+    let best = 0;
+    try {
+      best = Number(localStorage.getItem("dino-hi") || 0);
+    } catch {}
     setHi(best);
 
     let dino = { x: 80, y: GROUND, vy: 0 };
@@ -89,7 +93,9 @@ export function DinoGame() {
       running = false;
       if (points > best) {
         best = points;
-        localStorage.setItem("dino-hi", String(best));
+        try {
+          localStorage.setItem("dino-hi", String(best));
+        } catch {}
         setHi(best);
       }
       draw();
@@ -145,8 +151,9 @@ export function DinoGame() {
       jump();
     };
     const onKey = (e: KeyboardEvent) => {
-      const tag = (e.target as HTMLElement | null)?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      // Leave Space to whatever has focus (typing, pressing a button, following a link).
+      const t = e.target as HTMLElement | null;
+      if (t?.closest("input, textarea, button, a, [contenteditable]")) return;
       if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
         jump();
