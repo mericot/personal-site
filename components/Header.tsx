@@ -10,7 +10,7 @@ export function Header() {
       </Link>
       <a
         href={`mailto:${site.email}`}
-        className="btn inline-flex h-10 items-center border-2 border-fg px-4 text-sm font-semibold text-fg no-underline"
+        className="btn inline-flex h-11 items-center border-2 border-fg px-4 text-sm font-semibold text-fg no-underline"
       >
         Say hi
       </a>

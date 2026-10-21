@@ -9,7 +9,7 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin"], weight: ["700", "800"] });
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"] });
 
-const description = "I build software in public. Once a week: what I built, what broke, what I learned.";
+const description = "I build software in public. The write-up: what I built, what broke, what I learned.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description,
   openGraph: {
     title: `${site.name} — I build software in public`,
-    description: "The reels show 30 seconds. This is the rest, once a week.",
+    description: "You saw 30 seconds. This is the rest.",
     url: site.url,
     siteName: site.domain,
     type: "website",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

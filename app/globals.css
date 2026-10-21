@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* 7f palette. Same values as the design canvas and the static prototype. */
+/* 7f palette, on plain black (canvas: Bg E). */
 @theme {
-  --color-bg: #0a0a0a;
-  --color-grain: #242424;
+  --color-bg: #000000;
   --color-fg: #ffffff;
   --color-body: #d4d4d4;
   --color-muted: #a3a3a3;
-  --color-dim: #6b6b6b;
+  --color-dim: #6b6b6b; /* 3.9:1 on black: only for 24px+ text or decoration */
+  --color-label: #8a8a8a; /* grey text at 14px or smaller */
   --color-hairline: #2e2e2e;
 
   /* the design switches layout at 720px */
@@ -31,11 +31,8 @@
   }
   body {
     background-color: var(--color-bg);
-    background-image: radial-gradient(var(--color-grain) 1px, transparent 1.2px);
-    background-size: 7px 7px;
     color: var(--color-fg);
     -webkit-font-smoothing: antialiased;
-    animation: drift 40s linear infinite;
   }
   :focus-visible {
     outline: 2px solid currentColor;
@@ -92,24 +89,35 @@
   .ready .fade-in {
     animation: fadeup 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 350ms both;
   }
+
+  /* Terminal block cursor while the terminal boots */
+  .cur {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: var(--color-fg);
+    animation: blink 1.1s steps(1) infinite;
+  }
 }
 
 @keyframes rise {
   from { transform: translateY(110%); }
   to { transform: translateY(0); }
 }
+@keyframes blink {
+  50% { opacity: 0; }
+}
 @keyframes fadeup {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes drift {
-  to { background-position: 70px 70px; }
-}
 
 @media (prefers-reduced-motion: reduce) {
-  body,
   .ready .reveal-line > span,
-  .ready .fade-in {
+  .ready .fade-in,
+  .cur {
     animation: none !important;
   }
   html,

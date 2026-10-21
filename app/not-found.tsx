@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { BeehiivEmbed } from "@/components/BeehiivEmbed";
 import { DinoGame } from "@/components/DinoGame";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SubscribePrompt } from "@/components/SubscribePrompt";
 
 export const metadata: Metadata = {
   title: "404 — the game didn't break",
@@ -18,8 +18,8 @@ export default function NotFound() {
       </section>
       <DinoGame />
       <section className="flex flex-col gap-3">
-        <p className="m-0 font-display text-2xl font-bold tracking-[-0.02em]">While you&apos;re here: the weekly write-up.</p>
-        <BeehiivEmbed />
+        <p className="m-0 font-display text-2xl font-bold tracking-[-0.02em]">While you&apos;re here: get the big updates.</p>
+        <SubscribePrompt />
       </section>
       <Footer />
     </main>

@@ -65,7 +65,7 @@ export function Konami() {
   return (
     <div
       role="status"
-      className="fixed bottom-6 left-1/2 z-10 flex w-max max-w-[calc(100%-32px)] -translate-x-1/2 items-center gap-3 bg-fg px-[18px] py-3.5 font-semibold text-bg"
+      className="fixed bottom-6 left-1/2 z-10 min-[1360px]:bottom-12 flex w-max max-w-[calc(100%-32px)] -translate-x-1/2 items-center gap-3 bg-fg px-[18px] py-3.5 font-semibold text-bg"
     >
       <span className="hidden font-mono text-[13px] tracking-[0.1em] whitespace-nowrap md:inline">↑↑↓↓←→←→BA</span>
       <span>{toast}</span>

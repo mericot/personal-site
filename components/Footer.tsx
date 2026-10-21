@@ -12,7 +12,7 @@ export function Footer() {
         </a>
         {site.footer.after}
       </p>
-      <span className="font-mono text-xs text-dim">
+      <span className="font-mono text-xs text-label">
         © {site.year} {site.name} · {site.domain}
       </span>
     </footer>

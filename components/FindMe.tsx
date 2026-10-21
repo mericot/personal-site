@@ -6,7 +6,7 @@ export function FindMe() {
   return (
     <nav
       aria-label="Find me elsewhere"
-      className="grid flex-1 grid-cols-1 content-between font-mono text-[13px] tracking-[0.02em] md:flex-none md:grid-cols-2 md:gap-x-6 md:border-t md:border-hairline md:pt-1"
+      className="grid flex-1 grid-cols-1 content-between font-mono text-[13px] tracking-[0.02em] md:flex-none md:self-stretch md:grid-cols-2 md:gap-x-6 md:border-t md:border-hairline md:pt-1"
     >
       {site.socials.map((s) => (
         <a key={s.key} href={s.href} rel="noopener" className="flex min-h-11 items-center gap-2.5 text-fg no-underline hover:opacity-70">

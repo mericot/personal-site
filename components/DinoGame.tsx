@@ -62,7 +62,7 @@ export function DinoGame() {
       cx.fillStyle = "#ffffff";
       cx.fillRect(0, GROUND, W, 2);
       sprite(DINO, dino.x, dino.y);
-      cx.fillStyle = "#0a0a0a";
+      cx.fillStyle = "#000000";
       cx.fillRect(dino.x + 6 * S, dino.y - 11 * S, S, S); // eye
       cx.fillStyle = "#ffffff";
       obstacles.forEach((o) => sprite(CACTUS, o.x, GROUND));
