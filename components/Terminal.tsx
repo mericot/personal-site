@@ -87,7 +87,7 @@ export function Terminal() {
     const result = await subscribe(address);
     track("subscribe", { from: "terminal", ok: result.ok });
     const reply: Line = result.ok
-      ? ["✓ you're on the list. the first issue lands soon."]
+      ? ["✓ almost there. check your inbox for a confirmation link."]
       : result.reason === "not_configured"
         ? ["the list opens soon. opening your mail app to save your spot…"]
         : result.reason === "invalid"
