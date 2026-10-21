@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@vercel/analytics";
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { site } from "@/content/site";
 import { mailtoSignup, subscribe } from "@/lib/subscribe";
@@ -71,7 +72,10 @@ export function SubscribePrompt() {
         ) : (
           <>
             {site.signupFine}
-            <span className="hidden md:inline"> Works in the terminal too.</span>
+            <span className="hidden md:inline"> Works in the terminal too.</span>{" "}
+            <Link href="/privacy" className="text-muted underline underline-offset-[3px] hover:text-fg">
+              Privacy
+            </Link>
           </>
         )}
       </p>
