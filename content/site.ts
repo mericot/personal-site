@@ -37,7 +37,7 @@ export const site = {
   },
 
   projects: [
-    { name: "SnapExpense", href: "[SNAPEXPENSE URL]", line: "snap a receipt, get a categorized expense. Live, still shipping weekly." },
+    { name: "SnapExpense", href: "https://snap-expenses.com/", line: "snap a receipt, get a categorized expense. Live, still shipping weekly." },
     { name: "Order-Saga", href: "https://github.com/mericot", line: "an order system where a failed payment cleanly undoes everything before it." },
   ] satisfies Project[],
 
