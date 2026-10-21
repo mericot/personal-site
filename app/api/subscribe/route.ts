@@ -28,12 +28,27 @@ export async function POST(request: Request) {
     return Response.json({ error: "not_configured" }, { status: 503 });
   }
 
-  const res = await fetch(`https://api.kit.com/v4/forms/${form}/subscribers`, {
+  // Kit only adds existing subscribers to a form (404 otherwise), so create them first. New ones start
+  // inactive and become active when they click the form's confirmation email; the create is an upsert
+  // that leaves an existing subscriber's state alone.
+  const headers = { "X-Kit-Api-Key": key, "Content-Type": "application/json" };
+  const created = await fetch("https://api.kit.com/v4/subscribers", {
     method: "POST",
-    headers: { "X-Kit-Api-Key": key, "Content-Type": "application/json" },
+    headers,
+    body: JSON.stringify({ email_address: email, state: "inactive" }),
+  });
+  if (!created.ok) {
+    console.error("kit create subscriber", created.status, await created.text());
+    return Response.json({ error: "failed" }, { status: 502 });
+  }
+
+  const added = await fetch(`https://api.kit.com/v4/forms/${form}/subscribers`, {
+    method: "POST",
+    headers,
     body: JSON.stringify({ email_address: email, referrer: "https://mericot.com" }),
   });
-  if (!res.ok) {
+  if (!added.ok) {
+    console.error("kit add to form", added.status, await added.text());
     return Response.json({ error: "failed" }, { status: 502 });
   }
   return Response.json({ ok: true });
