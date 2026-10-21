@@ -5,13 +5,14 @@ export const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 export type SubscribeResult = { ok: true } | { ok: false; reason: "invalid" | "not_configured" | "failed" };
 
-export async function subscribe(email: string): Promise<SubscribeResult> {
+// `website` is the prompt's honeypot field: empty for people, filled by form-stuffing bots.
+export async function subscribe(email: string, website = ""): Promise<SubscribeResult> {
   if (!EMAIL_RE.test(email)) return { ok: false, reason: "invalid" };
   try {
     const res = await fetch("/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, website }),
     });
     if (res.ok) return { ok: true };
     const data = (await res.json().catch(() => ({}))) as { error?: string };

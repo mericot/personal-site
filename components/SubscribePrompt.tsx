@@ -13,11 +13,12 @@ export function SubscribePrompt() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>({ kind: "idle" });
 
-  async function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const address = email.trim();
+    const website = new FormData(e.currentTarget).get("website");
     setStatus({ kind: "sending" });
-    const result = await subscribe(address);
+    const result = await subscribe(address, typeof website === "string" ? website : "");
     track("subscribe", { from: "prompt", ok: result.ok });
     if (result.ok) {
       setEmail("");
@@ -50,6 +51,8 @@ export function SubscribePrompt() {
           enterKeyHint="send"
           className="w-0 min-w-0 flex-1 bg-transparent px-2.5 text-base text-fg outline-none placeholder:text-label md:text-[15px]"
         />
+        {/* Honeypot: off-screen and skipped by keyboard and screen readers, so only bots fill it in. */}
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
         <button
           type="submit"
           aria-label="Subscribe"

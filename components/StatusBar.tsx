@@ -30,7 +30,10 @@ export function StatusBar() {
       setPos(y < 4 ? "Top" : max <= 0 || y >= max - 2 ? "Bot" : `${Math.round((y / max) * 100)}%`);
     };
 
+    // The shortcuts only work while the bar that lists them is visible.
+    const wide = window.matchMedia("(min-width: 1360px)");
     const onKey = (e: KeyboardEvent) => {
+      if (!wide.matches) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;

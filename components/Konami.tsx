@@ -27,7 +27,7 @@ export function Konami() {
 
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement | null;
-      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return; // don't fire while typing
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return; // don't fire while typing
       const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
       pos = k === SEQUENCE[pos] ? pos + 1 : k === SEQUENCE[0] ? 1 : 0;
       if (pos === SEQUENCE.length) {
