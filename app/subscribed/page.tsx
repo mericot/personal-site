@@ -20,6 +20,7 @@ export default function Subscribed() {
       <section className="flex flex-col gap-2">
         <h1 className="m-0 font-display text-[clamp(56px,14vw,112px)] leading-[0.9] font-extrabold tracking-[-0.06em]">You&apos;re in.</h1>
         <p className="m-0 text-lg text-body">Subscription confirmed. The next big update lands in your inbox.</p>
+        <p className="m-0 text-sm text-label">Not seeing my emails? Check spam and mark it &ldquo;Not junk&rdquo; so the next one finds you.</p>
       </section>
       <div className="border-2 border-fg font-mono text-sm leading-[1.6]">
         <div className="border-b border-hairline px-4 py-2 text-xs tracking-[0.02em] text-muted">samuel@mericot:~</div>
