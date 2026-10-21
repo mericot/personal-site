@@ -23,10 +23,10 @@ export const site = {
   footer: { before: "Building something too?", link: "Email me", after: ". I read everything." },
 
   socials: [
-    { key: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@[HANDLE]" },
-    { key: "instagram", label: "Instagram", href: "https://www.instagram.com/[HANDLE]" },
+    { key: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@mericot.dev" },
+    { key: "instagram", label: "Instagram", href: "https://www.instagram.com/mericot.dev" },
     { key: "github", label: "GitHub", href: "https://github.com/mericot" },
-    { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/[HANDLE]" },
+    { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/samuel-pimentel-166514209" },
   ] satisfies Social[],
 
   newsletter: {
@@ -42,9 +42,7 @@ export const site = {
   ] satisfies Project[],
 
   // Newest first. The first one is linked under the signup ("from the latest reel"); `reels` lists them all.
-  reels: [
-    { title: "[REEL 1 TITLE]", date: "[DATE]", code: "https://github.com/mericot" },
-    { title: "[REEL 2 TITLE]", date: "[DATE]", code: "https://github.com/mericot" },
-    { title: "[REEL 3 TITLE]", date: "[DATE]", code: "https://github.com/mericot" },
-  ] satisfies Reel[],
+  // Empty hides both, and the terminal stops advertising `reels`. Add e.g.
+  // { title: "Built a receipt scanner in a day", date: "Oct 2026", code: "https://github.com/mericot/snap-expense" }
+  reels: [] as Reel[],
 };

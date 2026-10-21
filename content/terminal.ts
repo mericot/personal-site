@@ -17,7 +17,18 @@ type Command = {
 
 const say = (...lines: string[]): Result => ({ lines: lines.map((l) => [l]) });
 
-export const welcome: Line = ["Welcome. Tap ", { cmd: "help" }, ", or try ", { cmd: "projects" }, " · ", { cmd: "reels" }, " · ", { cmd: "latest" }];
+// Until site.reels has entries, `reels` still answers but isn't advertised.
+const hasReels = site.reels.length > 0;
+
+export const welcome: Line = [
+  "Welcome. Tap ",
+  { cmd: "help" },
+  ", or try ",
+  { cmd: "projects" },
+  " · ",
+  ...(hasReels ? [{ cmd: "reels" }, " · "] : []),
+  { cmd: "latest" },
+];
 
 export const commands: Command[] = [
   {
@@ -39,9 +50,12 @@ export const commands: Command[] = [
   {
     name: "reels",
     hint: "the code behind my videos",
+    hidden: !hasReels,
     run: () => ({
       lines: [
-        ...site.reels.map((r): Line => [`${r.title} · ${r.date} → `, { text: "the code", href: r.code }]),
+        ...(hasReels
+          ? site.reels.map((r): Line => [`${r.title} · ${r.date} → `, { text: "the code", href: r.code }])
+          : [["No reels with code yet. They're coming."] as Line]),
         ["more on ", { text: "TikTok", href: site.socials[0].href }],
       ],
     }),
@@ -111,4 +125,4 @@ export function complete(partial: string): { match?: string; options: string[] }
   return options.length === 1 ? { match: options[0], options } : { options };
 }
 
-export const chips = ["help", "projects", "reels", "latest", "subscribe"] as const;
+export const chips = ["help", "projects", ...(hasReels ? ["reels"] : []), "latest", "subscribe"];
