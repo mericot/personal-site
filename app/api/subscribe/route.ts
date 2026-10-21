@@ -4,12 +4,30 @@ import { EMAIL_RE } from "@/lib/subscribe";
 // POST /api/subscribe { email } adds the address to the Kit (ConvertKit) form, which handles
 // double opt-in and the welcome email. Needs KIT_API_KEY and KIT_FORM_ID in Vercel. Until they're
 // set it answers 503 not_configured and the page falls back to an email.
-// Every signup triggers a confirmation email, so bots are turned away before Kit sees the address:
-// BotID (see instrumentation-client.ts) plus a honeypot field that only bots fill in.
+// Every signup triggers a confirmation email, so bots are kept away from Kit: a honeypot field that only
+// bots fill in, plus BotID (see instrumentation-client.ts).
+// BotID is log-only for now: in production it flagged every real visitor as a bot (October 2026). Its
+// verdict is logged, without the address or IP, until we know why; then set BLOCK_BOTS back to true.
+const BLOCK_BOTS = false;
+
 export async function POST(request: Request) {
   const verification = await checkBotId();
   if (verification.isBot) {
-    return Response.json({ error: "denied" }, { status: 403 });
+    console.warn(
+      "botid flagged signup",
+      JSON.stringify({
+        blocked: BLOCK_BOTS,
+        isVerifiedBot: verification.isVerifiedBot,
+        bypassed: verification.bypassed,
+        reason: "classificationReason" in verification ? verification.classificationReason : undefined,
+        hasToken: request.headers.has("x-is-human"),
+        viaCloudflare: request.headers.has("cf-ray"),
+        userAgent: request.headers.get("user-agent"),
+      }),
+    );
+    if (BLOCK_BOTS) {
+      return Response.json({ error: "denied" }, { status: 403 });
+    }
   }
 
   const body = (await request.json().catch(() => null)) as { email?: unknown; website?: unknown } | null;
