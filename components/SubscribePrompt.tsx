@@ -66,7 +66,7 @@ export function SubscribePrompt() {
       </form>
       <p role="status" className={`m-0 text-sm ${status.kind === "done" ? "text-fg" : "text-muted"}`}>
         {status.kind === "done" ? (
-          <>✓ Almost there. Check {status.email} for a confirmation link.</>
+          <>✓ You&apos;re on the list as {status.email}.</>
         ) : status.kind === "error" ? (
           status.message
         ) : (

@@ -4,6 +4,8 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/content/site";
 
+// PARKED (Oct 2026): double opt-in is off, so nothing links here. The leading underscore keeps Next from
+// routing this folder; rename it back to app/subscribed to bring the page back.
 // Where Kit sends people after they click "Confirm your subscription" in the confirmation email
 // (form settings → Incentive → redirect URL: https://mericot.com/subscribed).
 export const metadata: Metadata = {

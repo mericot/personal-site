@@ -28,8 +28,8 @@ const sections: { title: string; body: ReactNode }[] = [
     body: (
       <ul>
         <li>
-          <strong>Your email address</strong>, when you subscribe. Kit, the newsletter service, also records whether you
-          confirmed, and which emails you open and links you click, so I can tell what&apos;s worth writing.
+          <strong>Your email address</strong>, when you subscribe. Kit, the newsletter service, also records which
+          emails you open and links you click, so I can tell what&apos;s worth writing.
         </li>
         <li>
           <strong>Anonymous page views.</strong> Vercel Web Analytics counts visits and whether a signup worked. It
