@@ -1,4 +1,4 @@
-# Welcome email (paste into Beehiiv > Automations > Welcome Email)
+# Welcome email (Kit: the form's incentive/confirmation email, or a one-step visual automation on form subscribe)
 
 **Subject:** You're in. Here's what to expect
 

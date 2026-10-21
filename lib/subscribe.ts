@@ -22,7 +22,7 @@ export async function subscribe(email: string, website = ""): Promise<SubscribeR
   }
 }
 
-// Until Beehiiv is connected: open the visitor's mail app with their address filled in, so the signup isn't lost.
+// Until Kit is connected: open the visitor's mail app with their address filled in, so the signup isn't lost.
 export function mailtoSignup(email: string) {
   return `mailto:${site.email}?subject=${encodeURIComponent("Put me on the list")}&body=${encodeURIComponent(email)}`;
 }

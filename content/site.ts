@@ -30,7 +30,7 @@ export const site = {
   ] satisfies Social[],
 
   newsletter: {
-    // Signups go through app/api/subscribe (needs BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID in Vercel).
+    // Signups go through app/api/subscribe (needs KIT_API_KEY and KIT_FORM_ID in Vercel).
     latest: null as null | { title: string; date: string; url: string },
     // Teased under the signup and by the terminal's `latest`. Set to null to hide.
     next: null as null | { label: string; topic: string },
