@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/content/site";
 import { SocialIcon } from "./SocialIcon";
 
@@ -13,7 +14,10 @@ export function Footer() {
         {site.footer.after}
       </p>
       <span className="font-mono text-xs text-label">
-        © {site.year} {site.name} · {site.domain}
+        © {site.year} {site.name} · {site.domain} ·{" "}
+        <Link href="/privacy" className="text-label underline underline-offset-[3px] hover:text-fg">
+          Privacy
+        </Link>
       </span>
     </footer>
   );
