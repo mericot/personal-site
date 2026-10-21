@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function Subscribed() {
-  const tiktok = site.socials.find((s) => s.key === "tiktok");
+  const instagram = site.socials.find((s) => s.key === "instagram");
 
   return (
     <main className="mx-auto flex max-w-[960px] flex-col gap-10 px-6 pt-6 pb-16">
@@ -40,8 +40,8 @@ export default function Subscribed() {
         <Link href="/" className="btn inline-flex h-11 items-center border-2 border-fg px-4 text-sm font-semibold text-fg no-underline">
           Back to the site
         </Link>
-        {tiktok && (
-          <a href={tiktok.href} rel="noopener" className="btn inline-flex h-11 items-center border border-hairline px-4 text-sm font-semibold text-fg no-underline">
+        {instagram && (
+          <a href={instagram.href} rel="noopener" className="btn inline-flex h-11 items-center border border-hairline px-4 text-sm font-semibold text-fg no-underline">
             Watch the reels
           </a>
         )}
