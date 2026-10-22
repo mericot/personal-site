@@ -1,4 +1,8 @@
-# Welcome email (Kit: the form's incentive/confirmation email, or a one-step visual automation on form subscribe)
+# Welcome email
+
+Sent once, right after someone subscribes. Signups are single opt-in (no confirmation email), so this is the first
+email a subscriber gets from `hello@mericot.com`. In Kit it's a one-email sequence triggered by subscribing to the
+"Newsletter site" form.
 
 **Subject:** You're in. Here's what to expect
 
@@ -8,17 +12,17 @@
 
 Hey, I'm Samuel. Thanks for subscribing.
 
-Here's the deal: I post short build-in-public videos almost every day. This email is the deeper cut. I'll only write when something big happens: a launch, a breakthrough, or a spectacular failure. The stuff that doesn't fit in a 30-second reel.
+Here's the deal: I post short build-in-public videos almost every day. This email is everything the reel cut: what broke, how I fixed it, what I'd do differently. I only write when something big happens: a launch, a breakthrough, or a spectacular failure.
 
 What you'll get:
 - What I shipped and what broke along the way
-- What I learned as a CS senior at UMass Lowell
+- What I'm learning as a CS senior at UMass Lowell
 - Freelance and project updates, including what's coming next
 
-What you won't get: spam or filler. No schedule to fill, and you can unsubscribe anytime.
+What you won't get: spam or filler. No schedule to fill, and you can unsubscribe in one tap.
 
-Want to see what I'm working on right now? Here's the code: https://github.com/mericot
+One favor: hit reply and tell me what you're building, even one line. I read every reply. And if this landed in spam or Promotions, drag it to your inbox so the next one finds you.
 
-Just hit reply and tell me what you're building. I read every response.
+Want to see what I'm working on right now? SnapExpense is live: https://snap-expenses.com. The code's here: https://github.com/mericot
 
 Samuel
