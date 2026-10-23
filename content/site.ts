@@ -38,7 +38,7 @@ export const site = {
 
   projects: [
     { name: "SnapExpense", href: "https://snap-expenses.com/", line: "snap a receipt, get a categorized expense. Live, still shipping weekly." },
-    { name: "Order-Saga", href: "https://github.com/mericot", line: "an order system where a failed payment cleanly undoes everything before it." },
+    { name: "Order-Saga", href: "https://github.com/mericot/order-saga", line: "an order system where a failed payment cleanly undoes everything before it." },
   ] satisfies Project[],
 
   // Newest first. The first one is linked under the signup ("from the latest reel"); `reels` lists them all.

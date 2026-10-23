@@ -17,7 +17,7 @@ Here's the deal: I post short build-in-public videos almost every day. This emai
 What you'll get:
 - What I shipped and what broke along the way
 - What I'm learning as a CS senior at UMass Lowell
-- Freelance and project updates, including what's coming next
+- What's coming next
 
 What you won't get: spam or filler. No schedule to fill, and you can unsubscribe in one tap.
 

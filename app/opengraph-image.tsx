@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Samuel — I build software in public. Here's the deeper cut.";
+export const alt = "Samuel — You saw 30 seconds. This is the rest.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,9 +16,9 @@ export default async function Image() {
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: -0.5 }}>Samuel</div>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 76, fontWeight: 800, lineHeight: 1, letterSpacing: -3 }}>
-            <span>I build software</span>
-            <span>in public.</span>
-            <span style={{ color: "#6b6b6b", fontSize: 54, marginTop: 8 }}>Here&apos;s the deeper cut.</span>
+            <span>You saw</span>
+            <span>30 seconds.</span>
+            <span style={{ color: "#6b6b6b", fontSize: 54, marginTop: 8 }}>This is the rest.</span>
           </div>
           <div style={{ fontSize: 22, color: "#a3a3a3" }}>mericot.com · the stuff the reels cut</div>
         </div>
