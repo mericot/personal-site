@@ -15,9 +15,10 @@ Hey, I'm Samuel. Thanks for subscribing.
 Here's the deal: I post short build-in-public videos almost every day. This email is everything the reel cut: what broke, how I fixed it, what I'd do differently. I only write when something big happens: a launch, a breakthrough, or a spectacular failure.
 
 What you'll get:
-- What I shipped and what broke along the way
-- What I'm learning as a CS senior at UMass Lowell
-- What's coming next
+- **The full story behind each build.** The reel shows the demo. The email shows the bug that cost me a weekend, the fix, and the code.
+- **Early access.** You'll try new things, like SnapExpense features, before they're in a video, and your feedback shapes what ships.
+- **The numbers.** Users, costs, what worked and what flopped. The stuff people usually hide.
+- **Reply access.** Every email is a conversation. Reply and I answer.
 
 What you won't get: spam or filler. No schedule to fill, and you can unsubscribe in one tap.
 
